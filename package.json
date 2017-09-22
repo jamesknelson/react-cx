@@ -1,0 +1,36 @@
+{
+  "name": "react-cx",
+  "version": "0.1.0",
+  "description": "Style React components with style",
+  "author": "James K Nelson <james@jamesknelson.com>",
+  "license": "MIT",
+  "main": "umd/index.js",
+  "module": "es6/index.js",
+  "keywords": [
+    "classnames",
+    "css",
+    "style",
+    "react"
+  ],
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:watch": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack --watch es6/index.js umd/react-cx.js",
+    "build": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack es6/index.js umd/react-cx.js",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.0",
+    "cross-env": "^1.0.7",
+    "rimraf": "^2.3.4",
+    "webpack": "^3.6.0"
+  },
+  "peerDependencies": {
+    "react": "^15.4.2"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.6.0",
+    "classnames": "^2.2.5"
+  }
+}
