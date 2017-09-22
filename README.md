@@ -116,7 +116,6 @@ function SwitchedSetter({ className, color, icon, label, noMobile, setActive, st
       <Arrow cx='horizontal-wire' active={setActive} color={color} headless length={4} />
       <Arrow cx='vertical-wire' active={setActive} color={color} headless />
       <Arrow cx='output' active={setActive || (switchActive && !willSet)} color={switchActive ? 'lifecycle' : color} />
-      {/* TODO: arrows that show merging outputs */}
     </div>
   )
 }
