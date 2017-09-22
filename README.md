@@ -1,4 +1,7 @@
-# react-cx
+react-cx
+========
+
+[![Version](http://img.shields.io/npm/v/classnames.svg)](https://www.npmjs.org/package/classnames)
 
 A utility to style React components with ~~style~~ css.
 
@@ -37,7 +40,9 @@ export function Arrow({ active, className, color, headless, noMobile, style, len
 
 *This arrow component is used in my [React lifecycle simulators](https://reactarmory.com/guides/lifecycle-simulators).*
 
-## How does it work?
+
+How does it work?
+-----------------
 
 In React, JSX calls are translated to calls to `React.createElement()`. Thus, by wrapping `React.createElement()` with our own function, we can add support for new props without ever touching React's internals.
 
@@ -76,6 +81,8 @@ export default function cx(styles, prop='cx') {
 }
 ```
 
-## License
 
-[/LICENSE] Copyright &copy; 2017 James K Nelson
+License
+-------
+
+[/LICENSE](MIT) Copyright &copy; 2017 James K Nelson
