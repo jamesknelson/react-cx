@@ -82,6 +82,47 @@ export default function cx(styles, prop='cx') {
 ```
 
 
+More examples
+-------------
+
+These components are all taken from my [React lifecycle simulators](https://reactarmory.com/guides/lifecycle-simulators).
+
+```jsx
+export function Indicator({ active, className, color, icon, label, noMobile, scheduled, style }) {
+  return (
+    <div cx={['Indicator', (scheduled || active) && color, { active, 'no-mobile': noMobile }]} className={className} style={style}>
+      { icon &&
+        <div cx="icon">{icon}</div>
+      }
+      <div cx="label">{label}</div>
+    </div>
+  )
+}
+
+export function Switch({ active, className, color='lifecycle', direction='down', style }) {
+  return (
+    <div cx={['Switch', { active }, color, direction]} className={className} style={style}>
+      <div cx="pivot" />
+      <Arrow active={active} color={color} headless={direction === 'down'} />
+    </div>
+  )
+}
+
+function SwitchedSetter({ className, color, icon, label, noMobile, setActive, style, switchActive, willSet }) {
+  return (
+    <div cx={['SwitchedSetter', { 'no-mobile': noMobile }]} className={className} style={style}>
+      <Switch active={switchActive} direction={willSet ? 'right' : 'down' } />
+      <Indicator active={setActive} color={color} icon={icon} label={label} scheduled={willSet} />
+      <Arrow cx='horizontal-wire' active={setActive} color={color} headless length={4} />
+      <Arrow cx='vertical-wire' active={setActive} color={color} headless />
+      <Arrow cx='output' active={setActive || (switchActive && !willSet)} color={switchActive ? 'lifecycle' : color} />
+      {/* TODO: arrows that show merging outputs */}
+    </div>
+  )
+}
+```
+
+
 License
 -------
 
