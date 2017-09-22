@@ -1,7 +1,7 @@
 react-cx
 ========
 
-[![Version](http://img.shields.io/npm/v/classnames.svg)](https://www.npmjs.org/package/classnames)
+[![Version](http://img.shields.io/npm/v/react-cx.svg)](https://www.npmjs.org/package/react-cx)
 
 A utility to style React components with ~~style~~ css.
 
