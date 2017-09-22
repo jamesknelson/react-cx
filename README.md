@@ -3,9 +3,29 @@ react-cx
 
 [![Version](http://img.shields.io/npm/v/react-cx.svg)](https://www.npmjs.org/package/react-cx)
 
-A utility to add a `cx` prop to React elements, making styling simpler.
+Making styling React components simpler, by turning this:
 
-Inspired by [jareware/css-ns](https://github.com/jareware/css-ns). The hard work is done by [jedwatson/classnames](https://github.com/JedWatson/classnames).
+```jsx
+const className = `
+  ${styles.Arrow}
+  ${active ? styles.active : ''}
+  ${styles[color] || ''}
+  ${styles['length-+'length] || ''}
+  ${className}
+`
+<div className={className} />
+```
+
+Into this:
+
+```jsx
+<div
+  cx={['Arrow', { active }, color, 'length-'+length]}
+  className={className}
+ />
+```
+
+Inspired by [jareware/css-ns](https://github.com/jareware/css-ns). Uses [jedwatson/classnames](https://github.com/JedWatson/classnames) under the hood.
 
 Install with npm:
 
@@ -14,31 +34,75 @@ Install with npm:
 npm install react-cx --save
 ```
 
-With react-cx, you can add styles from CSS modules by specifying a `cx` prop on you React elements:
+
+Usage
+-----
+
+When styling components with [CSS modules](https://github.com/css-modules/css-modules), you'll often need join multiple class names together before passing them to the React `className` prop.
 
 ```jsx
-// Import a CSS file using CSS Modules
+// CSS Modules provide an object with your stylesheet's class names
 import styles from './Theme.less'
 
-// Wrap `React` to add a `cx` prop that gets class names from the `styles`
+export function({ active, className, color, length=1 }) {
+  const className = `
+    ${styles.Arrow}
+    ${active ? styles.active : ''}
+    ${styles[color] || ''}
+    ${styles['length-+'length] || ''}
+    ${className}
+  `
+  <div className={className} />
+}
+```
+
+The [classnames](https://github.com/JedWatson/classnames) package can help, but the resulting code still feels a little verbose after you've typed it for the 50th time.
+
+```jsx
+import styles from './Theme.less'
+
+// classnames provides a helper to build `className` strings
+import bindClassNames from 'classnames/bind'
+const cx = bindClassNames(styles)
+
+export function Arrow({ active, className='', color, length=1 }) {
+  return <div className={cx('Arrow', { active }, color, 'length-'+length)+' '+className} />
+}
+```
+
+With react-cx, you can add styles from your CSS modules directly to your elements by using the `cx` prop. It uses the same syntax as the classnames package, and still lets you append a raw `className` prop.
+
+```jsx
+import styles from './Theme.less'
+
+// react-cx adds a `cx` prop to React by wrapping `React.createElement`
 import getReactWithCX from './react-cx'
 const React = getReactWithCX(styles)
 
-export function Arrow({ active, className, color, headless, noMobile, style, length=1 }) {
+export function Arrow({ active, className, color, length=1 }) {
   return (
     <div
-      // The `cx` props arguments are passed to the `classnames` package
-      cx={['Arrow', { active, headless, 'no-mobile': noMobile }, color, 'length-'+length]}
-
-      // If you pass a `classname`, it is appended as-is to any class names
-      // from the `cx` prop.
+      cx={['Arrow', { active }, color, 'length-'+length]}
       className={className}
      />
   )
 }
 ```
 
-*This arrow component is used in my [React lifecycle simulators](https://reactarmory.com/guides/lifecycle-simulators).*
+Of course, the `cx` prop can also accept strings or plain objects:
+
+```jsx
+export function Switch({ active, className, color='lifecycle', direction='down' }) {
+  return (
+    <div cx={['Switch', { active }, color, direction]} className={className}>
+      <div cx="pivot" />
+      <Arrow active={active} color={color} />
+    </div>
+  )
+}
+```
+
+*These components are taken from my [React lifecycle simulators](https://reactarmory.com/guides/lifecycle-simulators).*
 
 
 How does it work?
