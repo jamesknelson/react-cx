@@ -85,4 +85,4 @@ export default function cx(styles, prop='cx') {
 License
 -------
 
-[/LICENSE](MIT) Copyright &copy; 2017 James K Nelson
+[MIT](/LICENSE) Copyright &copy; 2017 James K Nelson
