@@ -3,20 +3,7 @@ react-cx
 
 [![Version](http://img.shields.io/npm/v/react-cx.svg)](https://www.npmjs.org/package/react-cx)
 
-Making styling React components simpler, by turning this:
-
-```jsx
-const className = `
-  ${styles.Arrow}
-  ${active ? styles.active : ''}
-  ${styles[color] || ''}
-  ${styles['length-+'length] || ''}
-  ${className}
-`
-<div className={className} />
-```
-
-Into this:
+Add styles from CSS Modules with a `cx` prop:
 
 ```jsx
 <div
@@ -35,8 +22,8 @@ npm install react-cx --save
 ```
 
 
-Usage
------
+Why?
+----
 
 When styling components with [CSS modules](https://github.com/css-modules/css-modules), you'll often need join multiple class names together before passing them to the React `className` prop.
 
