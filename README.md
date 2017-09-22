@@ -3,7 +3,7 @@ react-cx
 
 [![Version](http://img.shields.io/npm/v/react-cx.svg)](https://www.npmjs.org/package/react-cx)
 
-A utility to style React components with ~~style~~ css.
+A utility to add a `cx` prop to React elements, making styling simpler.
 
 Inspired by [jareware/css-ns](https://github.com/jareware/css-ns). The hard work is done by [jedwatson/classnames](https://github.com/JedWatson/classnames).
 
