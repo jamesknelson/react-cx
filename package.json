@@ -1,6 +1,6 @@
 {
   "name": "react-cx",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Style React components with style",
   "author": "James K Nelson <james@jamesknelson.com>",
   "license": "MIT",
@@ -11,7 +11,7 @@
   ],
   "main": "umd/react-cx.js",
   "module": "es6/index.js",
-  "types": "react-cx.d.ts",
+  "types": "./react-cx.d.ts",
   "keywords": [
     "classnames",
     "css",
